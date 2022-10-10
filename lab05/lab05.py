@@ -21,7 +21,7 @@ eng = (int(list2[1])+int(list3[1])+int(list4[1]))/3
 math = (int(list2[2])+int(list3[2])+int(list4[2]))/3
 sci = (int(list2[3])+int(list3[3])+int(list4[3]))/3
 soc = (int(list2[4])+int(list3[4])+int(list4[4]))/3
-#印出各科平均
+#印出各科平均 
 print("國文平均成績："+str(chi))
 print("英文平均成績："+str(eng))
 print("數學平均成績："+str(math))
