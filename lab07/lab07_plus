@@ -1,0 +1,63 @@
+class animal():
+    def __init__(self, weig, mood):
+      self.weig=weig
+      self.mood=mood
+    def feed(self, weig, mood):
+        pass
+    def walk(self, weig, mood):
+        pass
+    def bath(self, n_bath):
+        self.mood=self.mood-n_bath*2
+
+	
+class dogs(animal):
+    def __init__(self, weig, mood):
+        super().__init__(weig, mood) 
+    def feed(self, n_feed):
+        self.weig=self.weig+n_feed*0.2
+        self.mood=self.mood+n_feed
+    def walk(self, n_walk):
+        self.weig=self.weig-n_walk*0.2
+        self.mood=self.mood+n_walk*2
+    def bath(self, n_bath):
+        super().bath(n_bath)
+    def cout(self, n_feed, n_walk, n_bath):
+        self.feed(n_feed)
+        self.walk(n_walk)
+        self.bath(n_bath)
+        print("狗狗現在的體重= ", self.weig, "kg, 心情= ", self.mood)
+
+		
+#建立狗的子類別shiba	
+class shiba(dogs):
+  def __init__(self, weig, mood):
+    super().__init__(weig, mood) 
+  def feed(self, n_feed):
+    self.weig=self.weig+n_feed*0.3
+    self.mood=self.mood+n_feed*5
+  def cout(self, n_feed, n_walk, n_bath):
+      self.feed(n_feed)
+      self.walk(n_walk)
+      self.bath(n_bath)
+      print("柴犬現在的體重= ", self.weig, "kg, 心情= ", self.mood)
+
+	  
+  def mood_cons(self, cons):
+      shiba.cout(0, 0, 0) 
+      print("mood最高只能為= " ,cons )
+      if (self.mood>=cons):
+          print("所以，柴犬現在的心情 ", cons)
+
+#輸出
+	  
+#輸出現在體重心情
+print("Q1:")
+shiba=shiba(5, 70) 
+shiba.cout(20, 10, 3) 
+
+#mood最高值90，心情從180->90
+print("Q2:")
+shiba.mood_cons(90) #在此改變cons
+#當mood最高300時
+print("Q3:")
+shiba.mood_cons(300) #在此改變cons
