@@ -11,27 +11,28 @@ class animal():
 
 	
 class dogs(animal):
-    def __init__(self, weig, mood):
-        super().__init__(weig, mood) 
-    def feed(self, n_feed):
-        self.weig=self.weig+n_feed*0.2
-        self.mood=self.mood+n_feed
-    def walk(self, n_walk):
-        self.weig=self.weig-n_walk*0.2
-        self.mood=self.mood+n_walk*2
-    def bath(self, n_bath):
-        super().bath(n_bath)
-    def cout(self, n_feed, n_walk, n_bath):
-        self.feed(n_feed)
-        self.walk(n_walk)
-        self.bath(n_bath)
-        print("狗狗現在的體重= ", self.weig, "kg, 心情= ", self.mood)
+	def __init__(self,weig,mood):
+		self.weig=weig
+		self.mood=mood
+	def feed(self, n_feed):
+		self.weig=self.weig+n_feed*0.2
+		self.mood=self.mood+n_feed
+	def walk(self, n_walk):
+		self.weig=self.weig-0.2*n_walk
+		self.mood=self.mood+n_walk*2
+	def bath(self, n_bath):
+		self.mood=self.mood-n_bath*2
+	def cout(self, n_feed, n_walk, n_bath):
+		self.feed(n_feed)
+		self.walk(n_walk)
+		self.bath(n_bath)
+		print("狗狗現在的體重= ", self.weig, "kg, 心情= ", self.mood)
 
-		
 #建立狗的子類別shiba	
 class shiba(dogs):
   def __init__(self, weig, mood):
-    super().__init__(weig, mood) 
+	  self.weig=weig
+	  self.mood=mood
   def feed(self, n_feed):
     self.weig=self.weig+n_feed*0.3
     self.mood=self.mood+n_feed*5
