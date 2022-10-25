@@ -42,10 +42,11 @@ class shiba(dogs):
       self.bath(n_bath)
       print("柴犬現在的體重= ", self.weig, "kg, 心情= ", self.mood)
 
-	  
+#心情最高限制  
   def mood_cons(self, cons):
       shiba.cout(0, 0, 0) 
       print("mood最高只能為= " ,cons )
+      #如果超過的話將心情降至限制值
       if (self.mood>=cons):
           print("所以，柴犬現在的心情 ", cons)
 
