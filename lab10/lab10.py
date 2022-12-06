@@ -1,5 +1,5 @@
 #coding=utf-8
-# 複製就對了-開頭，引入flask和request工具
+#複製就對了-開頭，引入flask和request工具
 from flask import Flask, request
 from flask_cors import CORS
 app = Flask(__name__)
