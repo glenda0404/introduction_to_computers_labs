@@ -1,15 +1,15 @@
-#每批有的人: (N%M)組有N/M+1人，(N/M-N%M)組有N/M人，所以每組最多n/m+1人、最少n/m人
-
 import json
 
-#網路上貼的-https://www.796t.com/content/1544740385.html?fbclid=IwAR14WgTXrBftrRMDXcBzopmE2EQSQmY6eIvUD4UZamC0oxfMX_rm8QBKsdI
+#網路上貼的排組-https://www.796t.com/content/1544740385.html?fbclid=IwAR14WgTXrBftrRMDXcBzopmE2EQSQmY6eIvUD4UZamC0oxfMX_rm8QBKsdI
 
 def Perm(arrs): 
+    # 若輸入 [1,2,3]，則先取出1，將剩餘的 [2,3]全排列得到 [[2,3],[3,2]]，再將1加到全排列 [[2,3],[3,2]]上變成 [[1,2,3],[1,3,2]]
+    # 同理，取出2或者3時，得到的分別是 [[2,1,3],[2,3,1]]和 [[3,1,2],[3,2,1]]
     if len(arrs)==1:
         return [arrs]
-    result = []  # 最後排列的情況
+    result = []  # 最終的結果（即全排列的各種情況）
     for i in range(len(arrs)):  
-        rest_arrs = arrs[:i]+arrs[i+1:]  # 把arrs裡面第i個元素拔出來，然後把剩下的拿去排(像是1.2.3裡面把1拔出來，然後把2.3拿去排再塞回去)
+        rest_arrs = arrs[:i]+arrs[i+1:]  # 取出arrs中的第 i個元素後剩餘的元素
         rest_lists = Perm(rest_arrs)   # 剩餘的元素完成全排列
         lists = []
         for term in rest_lists:
@@ -18,10 +18,8 @@ def Perm(arrs):
     return result
 
 
-def BF(weight,limit): #先寫看看主要函式
-    N = len(weight) #有幾個體重
-    
-
+def BF(input): #先寫看看函式
+    N = len(input) #n表示每個input為幾乘幾的矩陣
     templist =[[i] for i in range(N)]
     #把人的排法存到tempassignment
     tempassignment=Perm(templist)
@@ -38,20 +36,19 @@ def BF(weight,limit): #先寫看看主要函式
 
         elif tempcost<cost: #如果新的tempcost比暫存值來得小的話
             cost=tempcost
-            assignment=tempassignment[j]
+            assignment=tempassignment[j][0]
         tempcost=0
     return assignment, cost
 
 
-with open('input_plus.json', 'r') as inputFile:
+with open('input.json', 'r') as inputFile:
     data = json.load(inputFile) # load data
     for key in data:
         input = data[key] # load each input
-        print ("key",key)
         # Brute Force Algorithm
         assignment, cost = BF(input)
 
         print('Question: ' + str(key))
         print('Assignment:', assignment)
         print('Cost:', cost)
-        print() 
+        print()
